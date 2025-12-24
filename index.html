@@ -1124,17 +1124,16 @@
             }
         });
 
-     document.getElementById('downloadCV').addEventListener('click', () => {
-    alert('Thank you for your interest! Your CV will start downloading.');
+  document.getElementById('downloadCV').addEventListener('click', () => {
+    alert('Thank you! Your CV will start downloading.');
 
     const link = document.createElement('a');
-    link.href = 'assets/Reem_Zaarour_CV.docx';
-    link.download = 'Reem_Zaarour_CV.docx';
+    link.href = 'Reem Zaarour Front-end cv.docx';
+    link.download = 'Reem Zaarour Front-end cv.docx';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
 });
-
 
         document.getElementById('contactForm').addEventListener('submit', (e) => {
             e.preventDefault();
@@ -1216,6 +1215,7 @@
     </script>
 </body>
 </html>
+
 
 
 
