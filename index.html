@@ -602,7 +602,6 @@
             margin-bottom: 15px;
         }
 
-        /* Contact Section */
         .contact {
             position: relative;
         }
@@ -695,7 +694,6 @@
             color: #666;
         }
 
-        /* Footer */
         footer {
             background: linear-gradient(180deg, 
                 #0a0a0a 0%, 
@@ -1024,7 +1022,9 @@
                 </div>
                 
                 <p>Download my complete CV to view my education, technical skills, projects, and academic achievements in detail.</p>
-                <button id="downloadCV" class="btn"><i class="fas fa-download"></i> Download My CV (PDF)</button>
+              <a href="Reem_Zaarour Front-end cv.docx" download class="btn">
+    <i class="fas fa-download"></i> Download My CV (DOCX)
+</a>
             </div>
         </div>
     </section>
@@ -1124,16 +1124,17 @@
             }
         });
 
-        document.getElementById('downloadCV').addEventListener('click', () => {
-            alert('Thank you for your interest! For a complete copy of my CV, please contact me via email.');
-            
-            const link = document.createElement('a');
-            link.href = '#';
-            link.download = 'Reem_Zaarour_CV.pdf';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        });
+     document.getElementById('downloadCV').addEventListener('click', () => {
+    alert('Thank you for your interest! Your CV will start downloading.');
+
+    const link = document.createElement('a');
+    link.href = 'assets/Reem_Zaarour_CV.docx';
+    link.download = 'Reem_Zaarour_CV.docx';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+});
+
 
         document.getElementById('contactForm').addEventListener('submit', (e) => {
             e.preventDefault();
@@ -1215,5 +1216,6 @@
     </script>
 </body>
 </html>
+
 
 
