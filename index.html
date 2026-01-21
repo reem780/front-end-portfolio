@@ -90,7 +90,6 @@
 
         .section-title:after {
             content: '';
-            position: absolute;
             width: 70px;
             height: 4px;
             background: linear-gradient(90deg, var(--primary) 0%, var(--primary-light) 100%);
@@ -797,7 +796,8 @@
         .contact-info p {
             color: #aaa;
             margin-bottom: 30px;
-            line-height: 1.7;
+                        line-height: 1.7;
+
         }
 
         .contact-item {
@@ -820,8 +820,8 @@
             width: 50px;
             height: 50px;
             background: linear-gradient(135deg, 
-                rgba(211, 47, 47, 0.2) 0%, 
-                rgba(66, 66, 66, 0.4) 100%);
+            rgba(211, 47, 47, 0.2) 0%, 
+            rgba(66, 66, 66, 0.4) 100%);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -1299,16 +1299,15 @@
                         </div>
                     </div>
                 </div>
-                
-                <div class="contact-form">
-                    <form id="contactForm">
-                        <input type="text" placeholder="Your Name" required>
-                        <input type="email" placeholder="Your Email" required>
-                        <input type="text" placeholder="Subject" required>
-                        <textarea rows="5" placeholder="Your Message" required></textarea>
-                        <button type="submit" class="btn">Send Message</button>
-                    </form>
-                </div>
+<div class="contact-form">
+    <form id="contactForm">
+        <input type="text" id="contactName" placeholder="Your Name" required>
+        <input type="email" id="contactEmail" placeholder="Your Email" required>
+        <input type="text" id="contactSubject" placeholder="Subject" required>
+        <textarea id="contactMessage" rows="5" placeholder="Your Message" required></textarea>
+        <button type="submit" class="btn">Send Message</button>
+    </form>
+</div>
             </div>
         </div>
     </section>
@@ -1320,10 +1319,9 @@
                 <p style="color: #aaa; margin-bottom: 20px;">Frontend Developer & Computer Science Graduate</p>
                 
                 <div class="social-links">
-                    <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="#" class="social-link"><i class="fab fa-github"></i></a>
-                    <a href="#" class="social-link"><i class="fab fa-codepen"></i></a>
-                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.linkedin.com/in/reem-zaarour-1b426420b/" class="social-link"><i class="fab fa-linkedin-in" ></i></a>
+                    <a href="https://github.com/reem780" class="social-link"><i class="fab fa-github"></i></a>
+                   
                 </div>
             </div>
             
@@ -1519,16 +1517,41 @@
             document.body.removeChild(link);
         });
 
-        document.getElementById('contactForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            const name = document.querySelector('#contactForm input[type="text"]').value;
-            const email = document.querySelector('#contactForm input[type="email"]').value;
-            
-            alert(`Thank you ${name}! Your message has been sent. I'll get back to you at ${email} as soon as possible.`);
-            
-            document.getElementById('contactForm').reset();
-        });
+document.getElementById('contactForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    
+    const name = document.getElementById('contactName').value;
+    const email = document.getElementById('contactEmail').value;
+    const subject = document.getElementById('contactSubject').value;
+    const message = document.getElementById('contactMessage').value;
+    
+    const messageData = {
+        id: Date.now(),
+        name: name,
+        email: email,
+        subject: subject,
+        message: message,
+        date: new Date().toISOString(),
+        read: false
+    };
+    
+    saveMessageToLocalStorage(messageData);
+    
+    alert(`Thank you ${name}! Your message has been sent. I'll get back to you at ${email} as soon as possible.`);
+    
+    document.getElementById('contactForm').reset();
+});
+
+function saveMessageToLocalStorage(messageData) {
+
+    let messages = JSON.parse(localStorage.getItem('contactMessages')) || [];
+    
+    messages.push(messageData);
+    
+    localStorage.setItem('contactMessages', JSON.stringify(messages));
+    
+    console.log('Message saved (in localStorage):', messageData);
+}
 
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
