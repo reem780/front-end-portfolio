@@ -530,44 +530,6 @@
             });
         });
 
-        function addSampleData() {
-            const sampleMessages = [
-                {
-                    id: 1,
-                    name: "John Doe",
-                    email: "john@example.com",
-                    subject: "Frontend Developer Position",
-                    message: "I saw your portfolio and was impressed with your work. We have an opening for a junior frontend developer at our company.",
-                    date: new Date(Date.now() - 86400000).toISOString(), // 1 day ago
-                    read: true
-                },
-                {
-                    id: 2,
-                    name: "Jane Smith",
-                    email: "jane@designstudio.com",
-                    subject: "Collaboration Opportunity",
-                    message: "I love your login animation project! Would you be interested in collaborating on a UI design project?",
-                    date: new Date(Date.now() - 172800000).toISOString(), // 2 days ago
-                    read: false
-                },
-                {
-                    id: 3,
-                    name: "Michael Johnson",
-                    email: "michael@techcompany.com",
-                    subject: "Interview Request",
-                    message: "Your nutritionist project looks very professional. We'd like to schedule an interview for our frontend team.",
-                    date: new Date(Date.now() - 604800000).toISOString(), // 7 days ago
-                    read: true
-                }
-            ];
-
-            if (messages.length === 0) {
-                messages = sampleMessages;
-                saveMessages();
-                updateStats();
-                displayMessages('all');
-            }
-        }
 
         loadMessages();
         addSampleData(); 
