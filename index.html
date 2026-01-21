@@ -942,6 +942,19 @@
         }
 
         @media (max-width: 992px) {
+          
+    .nav-links {
+        padding: 20px;
+        gap: 20px;
+    }
+    
+    .nav-links a {
+        padding: 10px 0;
+        font-size: 1.1rem;
+    }
+}
+        @media (max-width: 992px) {
+
             .hero, .about-content, .contact-container {
                 grid-template-columns: 1fr;
                 text-align: center;
@@ -1014,29 +1027,129 @@
                 flex-direction: column;
             }
         }
+        @media (max-width: 480px) {
+    .contact-form input,
+    .contact-form textarea {
+        padding: 12px;
+        font-size: 16px; 
+    }
+    
+    form .btn {
+        width: 100%;
+        padding: 14px;
+    }
+}
 
         @media (max-width: 768px) {
-            .hero-content h1 {
-                font-size: 2.3rem;
-            }
-
-            .section-title {
-                font-size: 1.8rem;
-            }
-
-            .hero {
-                padding-top: 130px;
-            }
-
-            .cv-features {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .modal-body {
-                grid-template-columns: 1fr;
-            }
-        }
+    .header-container {
+        padding: 15px 0;
+    }
+    
+    .logo {
+        font-size: 1.5rem;
+    }
+    
+    .nav-links {
+        top: 70px;
+    }
+    
+    .hero {
+        padding-top: 120px;
+        padding-bottom: 60px;
+    }
+    
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+    
+    .hero-content h2 {
+        font-size: 1.3rem;
+    }
+    
+    .hero-content p {
+        font-size: 1rem;
+    }
+    
+    .profile-img {
+        width: 250px;
+        height: 250px;
+        font-size: 120px;
+    }
+    
+    .section-title {
+        font-size: 1.5rem;
+        margin-bottom: 40px;
+    }
+    
+    section {
+        padding: 50px 0;
+    }
+}
+@media (max-width: 480px) {
+    .hero-content h1 {
+        font-size: 1.8rem;
+    }
+    
+    .hero-content h2 {
+        font-size: 1.1rem;
+    }
+    
+    .profile-img {
+        width: 200px;
+        height: 200px;
+        font-size: 100px;
+    }
+    
+    .hero-btns {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .btn {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .project-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .project-card {
+        margin: 0 5px;
+    }
+    
+    .cv-content {
+        padding: 25px 15px;
+    }
+    
+    .contact-container {
+        gap: 30px;
+    }
+    
+    .contact-item {
+        padding: 10px;
+    }
+    
+    .contact-item i {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+        margin-right: 10px;
+    }
+    
+    .modal-content {
+        padding: 20px 15px;
+    }
+    
+    .modal-header h2 {
+        font-size: 1.5rem;
+    }
+    
+    .modal-actions .btn {
+        width: 100%;
+    }
+}
     </style>
 </head>
 <body>
@@ -1622,3 +1735,4 @@ function saveMessageToLocalStorage(messageData) {
     </script>
 </body>
 </html>
+
