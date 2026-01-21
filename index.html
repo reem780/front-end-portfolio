@@ -151,6 +151,12 @@
         .btn-secondary:hover {
             color: white;
         }
+
+        .btn-small {
+            padding: 8px 20px;
+            font-size: 0.9rem;
+        }
+
         header {
             position: fixed;
             top: 0;
@@ -223,7 +229,6 @@
             color: var(--light);
         }
 
-        /* Hero Section */
         .hero {
             padding-top: 150px;
             padding-bottom: 100px;
@@ -399,7 +404,6 @@
                 rgba(66, 66, 66, 0.4) 100%);
         }
 
-        /* Projects Section */
         .projects {
             position: relative;
         }
@@ -513,7 +517,169 @@
             border: 1px solid rgba(211, 47, 47, 0.3);
         }
 
-        /* CV Section */
+        .project-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, 
+                rgba(26, 26, 26, 0.95) 0%, 
+                rgba(33, 33, 33, 0.9) 100%);
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            border-radius: var(--border-radius);
+            padding: 40px;
+            position: relative;
+            border: 1px solid rgba(211, 47, 47, 0.3);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            transform: translateY(30px);
+            transition: transform 0.4s ease;
+            overflow-y: auto;
+            backdrop-filter: blur(20px);
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: translateY(0);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(211, 47, 47, 0.2);
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: var(--transition);
+            z-index: 10;
+        }
+
+        .modal-close:hover {
+            background: var(--primary);
+            transform: rotate(90deg);
+        }
+
+        .modal-header {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid rgba(211, 47, 47, 0.3);
+        }
+
+        .modal-header h2 {
+            color: var(--primary-light);
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .modal-header .modal-subtitle {
+            color: #aaa;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .modal-body {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        .modal-features, .modal-challenges, .modal-tech {
+            margin-bottom: 20px;
+        }
+
+        .modal-features h3, .modal-challenges h3, .modal-tech h3 {
+            color: white;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .modal-features h3 i, .modal-challenges h3 i, .modal-tech h3 i {
+            color: var(--primary);
+        }
+
+        .modal-features ul, .modal-challenges ul {
+            list-style: none;
+            padding-left: 20px;
+        }
+
+        .modal-features li, .modal-challenges li {
+            color: #ccc;
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .modal-features li:before, .modal-challenges li:before {
+            content: '▸';
+            color: var(--primary);
+            position: absolute;
+            left: 0;
+        }
+
+        .modal-tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .modal-tech-item {
+            background: linear-gradient(135deg, 
+                rgba(211, 47, 47, 0.2) 0%, 
+                rgba(211, 47, 47, 0.1) 100%);
+            color: var(--primary-light);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border: 1px solid rgba(211, 47, 47, 0.3);
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid rgba(211, 47, 47, 0.3);
+        }
+
         .cv-section {
             text-align: center;
             position: relative;
@@ -838,6 +1004,15 @@
             .orb-1, .orb-2 {
                 display: none;
             }
+
+            .modal-content {
+                padding: 30px 20px;
+                width: 95%;
+            }
+
+            .modal-actions {
+                flex-direction: column;
+            }
         }
 
         @media (max-width: 768px) {
@@ -857,12 +1032,60 @@
                 flex-direction: column;
                 align-items: center;
             }
+
+            .modal-body {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
     <div class="gradient-orb orb-1"></div>
     <div class="gradient-orb orb-2"></div>
+
+    <div id="projectModal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close" id="closeModal">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="modal-header">
+                <h2 id="modalTitle">Project Title</h2>
+                <div class="modal-subtitle">
+                    <span id="modalType">Full Stack Web Application</span>
+                    <span>•</span>
+                    <span id="modalDate">July 2025</span>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="modal-features">
+                    <h3><i class="fas fa-star"></i> Key Features</h3>
+                    <ul id="modalFeatures">
+                        <li>Feature 1</li>
+                        <li>Feature 2</li>
+                        <li>Feature 3</li>
+                    </ul>
+                </div>
+                <div class="modal-challenges">
+                    <h3><i class="fas fa-puzzle-piece"></i> Challenges & Solutions</h3>
+                    <ul id="modalChallenges">
+                        <li>Challenge 1</li>
+                        <li>Challenge 2</li>
+                    </ul>
+                </div>
+                <div class="modal-tech">
+                    <h3><i class="fas fa-code"></i> Technologies Used</h3>
+                    <div class="modal-tech-stack" id="modalTechStack">
+                        <span class="modal-tech-item">HTML5</span>
+                        <span class="modal-tech-item">CSS3</span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-actions" id="modalActions">
+                <a href="#" class="btn" target="_blank" id="liveDemoBtn">Live Demo</a>
+                <a href="#" class="btn btn-secondary" target="_blank" id="githubBtn">GitHub</a>
+            </div>
+        </div>
+    </div>
 
     <header id="header">
         <div class="container header-container">
@@ -881,6 +1104,7 @@
             </div>
         </div>
     </header>
+
     <section id="home" class="hero">
         <div class="container">
             <div class="hero-content">
@@ -892,7 +1116,12 @@
                     <a href="#contact" class="btn btn-secondary">Hire Me</a>
                 </div>
             </div>
-         
+            <div class="hero-image">
+           
+           <!--<div class="profile-img">
+                    <i class="fas fa-laptop-code"></i>
+                </div>-->
+            </div>
         </div>
     </section>
 
@@ -933,11 +1162,12 @@
             </div>
         </div>
     </section>
+
     <section id="projects" class="projects">
         <div class="container">
             <h2 class="section-title">My Projects</h2>
             <div class="project-grid">
-                <div class="project-card">
+                <div class="project-card" data-project="biopure">
                     <div class="project-img">
                         <i class="fas fa-hospital"></i>
                     </div>
@@ -952,10 +1182,13 @@
                             <span class="tech-tag">JSON</span>
                             <span class="tech-tag">AJAX</span>
                         </div>
-                        <a href="#" class="btn">View Project Details</a>
+                        <div class="project-actions">
+                            <button class="btn btn-small view-details" data-project="biopure">View Details</button>
+                        </div>
                     </div>
                 </div>
-                <div class="project-card">
+
+                <div class="project-card" data-project="nutritionist">
                     <div class="project-img">
                         <i class="fas fa-apple-alt"></i>
                     </div>
@@ -970,30 +1203,37 @@
                             <span class="tech-tag">Bootstrap</span>
                             <span class="tech-tag">JSON</span>
                         </div>
-                        <a href="#" class="btn">View Project Details</a>
+                        <div class="project-actions">
+                            <button class="btn btn-small view-details" data-project="nutritionist">View Details</button>
+                        </div>
                     </div>
                 </div>
 
-             <div class="project-card">
-    <div class="project-img"><i class="fas fa-user-lock"></i></div>
-    <div class="project-info">
-        <h3>Animated Login & Signup UI</h3>
-        <p>A modern animated login and signup interface with smooth transitions, interactive circular animation, and clean UI/UX design. Built to demonstrate frontend animation and user experience skills.</p>
-        <div class="project-tech">
-            <span class="tech-tag">HTML5</span>
-            <span class="tech-tag">CSS3</span>
-            <span class="tech-tag">JavaScript</span>
-            <span class="tech-tag">UI/UX</span>
-            <span class="tech-tag">Animations</span>
-        </div>
-        <a href="https://reem780.github.io/Login/" class="btn" target="_blank">Live Demo</a>
-        <a href="https://reem780.github.io/Login/" class="btn btn-secondary" target="_blank">GitHub</a>
-    </div>
-</div>
-
+                <div class="project-card" data-project="login">
+                    <div class="project-img">
+                        <i class="fas fa-user-lock"></i>
+                    </div>
+                    <div class="project-info">
+                        <h3>Animated Login & Signup UI</h3>
+                        <p>A modern animated login and signup interface with smooth transitions, interactive circular animation, and clean UI/UX design. Built to demonstrate frontend animation and user experience skills.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">HTML5</span>
+                            <span class="tech-tag">CSS3</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">UI/UX</span>
+                            <span class="tech-tag">Animations</span>
+                        </div>
+                        <div class="project-actions">
+                            <button class="btn btn-small view-details" data-project="login">View Details</button>
+                            <a href="https://reem780.github.io/Login/" class="btn btn-small" target="_blank">Live Demo</a>
+                            <a href="https://github.com/reem780/Login" class="btn btn-small btn-secondary" target="_blank">GitHub</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
+
     <section id="cv" class="cv-section">
         <div class="container">
             <h2 class="section-title">My Resume</h2>
@@ -1020,9 +1260,9 @@
                 </div>
                 
                 <p>Download my complete CV to view my education, technical skills, projects, and academic achievements in detail.</p>
-              <a  id="downloadCV"  href="CVReem Zaarour.pdf" download class="btn">
-    <i class="fas fa-download"></i> Download My CV (PDF)
-</a>
+                <a id="downloadCV" href="CVReem Zaarour.pdf" download class="btn">
+                    <i class="fas fa-download"></i> Download My CV (PDF)
+                </a>
             </div>
         </div>
     </section>
@@ -1096,7 +1336,153 @@
     <script>
         const mobileToggle = document.getElementById('mobileToggle');
         const navLinks = document.getElementById('navLinks');
-        
+        const modalOverlay = document.getElementById('projectModal');
+        const closeModal = document.getElementById('closeModal');
+        const viewDetailsBtns = document.querySelectorAll('.view-details');
+
+        const projectData = {
+            biopure: {
+                title: "Biopure Clinic Management System",
+                type: "Full Stack Web Application",
+                date: "July 2025",
+                features: [
+                    "Complete patient management with CRUD operations",
+                    "Appointment scheduling system with calendar integration",
+                    "Medical records and prescription management",
+                    "Billing and invoice generation system",
+                    "Admin dashboard with analytics and reporting",
+                    "Secure user authentication and role-based access"
+                ],
+                challenges: [
+                    "Designed complex database schema to handle medical relationships",
+                    "Implemented real-time appointment notifications using AJAX",
+                    "Optimized database queries for faster patient record retrieval",
+                    "Ensured HIPAA compliance in data handling and storage"
+                ],
+                tech: ["PHP", "MySQL", "JavaScript", "HTML5", "CSS3", "AJAX", "JSON", "Bootstrap"],
+                liveDemo: "#",
+                github: "#"
+            },
+            nutritionist: {
+                title: "Nutritionist Website & Appointment System",
+                type: "Full Service Platform",
+                date: "December 2024",
+                features: [
+                    "Client management dashboard with progress tracking",
+                    "Automated appointment booking and reminders",
+                    "Personalized diet plan generator",
+                    "Meal tracking and nutrition calculator",
+                    "Client progress reports and analytics",
+                    "Secure messaging system between nutritionist and clients"
+                ],
+                challenges: [
+                    "Created dynamic diet plan generator based on client metrics",
+                    "Implemented calendar synchronization with Google Calendar API",
+                    "Developed responsive design for mobile nutrition tracking",
+                    "Built secure payment integration for consultation fees"
+                ],
+                tech: ["PHP", "MySQL", "JavaScript", "HTML5", "CSS3", "Bootstrap", "JSON", "Google Calendar API"],
+                liveDemo: "#",
+                github: "#"
+            },
+            login: {
+                title: "Animated Login & Signup UI",
+                type: "Frontend Interface Design",
+                date: "December 2025",
+                features: [
+                    "Smooth circular animation during form transitions",
+                    "Interactive input validation with visual feedback",
+                    "Responsive design for all screen sizes",
+                    "Clean and modern user interface",
+                    "Password strength indicator",
+                    "Social media login options"
+                ],
+                challenges: [
+                    "Created custom CSS animations for smooth transitions",
+                    "Implemented form validation without external libraries",
+                    "Designed mobile-first responsive layout",
+                    "Optimized performance for fast loading times"
+                ],
+                tech: ["HTML5", "CSS3", "JavaScript", "UI/UX Design", "CSS Animations", "Responsive Design"],
+                liveDemo: "https://reem780.github.io/Login/",
+                github: "https://github.com/reem780/Login"
+            }
+        };
+
+        function openModal(projectId) {
+            const project = projectData[projectId];
+            
+            document.getElementById('modalTitle').textContent = project.title;
+            document.getElementById('modalType').textContent = project.type;
+            document.getElementById('modalDate').textContent = project.date;
+            
+            const featuresList = document.getElementById('modalFeatures');
+            featuresList.innerHTML = '';
+            project.features.forEach(feature => {
+                const li = document.createElement('li');
+                li.textContent = feature;
+                featuresList.appendChild(li);
+            });
+            
+            const challengesList = document.getElementById('modalChallenges');
+            challengesList.innerHTML = '';
+            project.challenges.forEach(challenge => {
+                const li = document.createElement('li');
+                li.textContent = challenge;
+                challengesList.appendChild(li);
+            });
+            
+            const techStack = document.getElementById('modalTechStack');
+            techStack.innerHTML = '';
+            project.tech.forEach(tech => {
+                const span = document.createElement('span');
+                span.className = 'modal-tech-item';
+                span.textContent = tech;
+                techStack.appendChild(span);
+            });
+            
+            const liveDemoBtn = document.getElementById('liveDemoBtn');
+            const githubBtn = document.getElementById('githubBtn');
+            
+            liveDemoBtn.href = project.liveDemo;
+            githubBtn.href = project.github;
+            
+            if (project.liveDemo === '#') {
+                liveDemoBtn.style.display = 'none';
+            } else {
+                liveDemoBtn.style.display = 'inline-block';
+            }
+            
+            if (project.github === '#') {
+                githubBtn.style.display = 'none';
+            } else {
+                githubBtn.style.display = 'inline-block';
+            }
+            
+            modalOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeProjectModal() {
+            modalOverlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        viewDetailsBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const projectId = btn.getAttribute('data-project');
+                openModal(projectId);
+            });
+        });
+
+        closeModal.addEventListener('click', closeProjectModal);
+
+        modalOverlay.addEventListener('click', (e) => {
+            if (e.target === modalOverlay) {
+                closeProjectModal();
+            }
+        });
+
         mobileToggle.addEventListener('click', () => {
             navLinks.classList.toggle('active');
             mobileToggle.innerHTML = navLinks.classList.contains('active') 
@@ -1122,16 +1508,16 @@
             }
         });
 
-  document.getElementById('downloadCV').addEventListener('click', () => {
-    alert('Thank you! Your CV will start downloading.');
-
-    const link = document.createElement('a');
-    link.href = 'CVReem Zaarour.pdf';
-    link.download = 'CVReem Zaarour.pdf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-});
+        document.getElementById('downloadCV').addEventListener('click', () => {
+            alert('Thank you! Your CV will start downloading.');
+            
+            const link = document.createElement('a');
+            link.href = 'CVReem Zaarour.pdf';
+            link.download = 'CVReem Zaarour.pdf';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        });
 
         document.getElementById('contactForm').addEventListener('submit', (e) => {
             e.preventDefault();
@@ -1213,10 +1599,3 @@
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
