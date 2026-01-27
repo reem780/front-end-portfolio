@@ -1280,6 +1280,29 @@
         <div class="container">
             <h2 class="section-title">My Projects</h2>
             <div class="project-grid">
+                <!-- Agek-co Project -->
+                <div class="project-card" data-project="agekco">
+                    <div class="project-img">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <div class="project-info">
+                        <h3>Agek-co Company Website</h3>
+                        <p>A professional corporate website for Agek-co, a company based in Riyadh, KSA. Features include company profile, services showcase, contact system, and responsive design for optimal viewing on all devices.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">HTML5</span>
+                            <span class="tech-tag">CSS3</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">Responsive Design</span>
+                            <span class="tech-tag">UI/UX</span>
+                            <span class="tech-tag">Bootstrap</span>
+                        </div>
+                        <div class="project-actions">
+                            <button class="btn btn-small view-details" data-project="agekco">View Details</button>
+                            <a href="https://agek-co.com/" class="btn btn-small" target="_blank">View Website</a>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="project-card" data-project="biopure">
                     <div class="project-img">
                         <i class="fas fa-hospital"></i>
@@ -1452,6 +1475,32 @@
         const viewDetailsBtns = document.querySelectorAll('.view-details');
 
         const projectData = {
+            agekco: {
+                title: "Agek-co Company Website",
+                type: "Corporate Website Development",
+                date: "March 2025",
+                features: [
+                    "Professional company profile and services showcase",
+                    "Fully responsive design for all devices",
+                    "Interactive contact form with validation",
+                    "Modern and clean UI/UX design",
+                    "Optimized for fast loading and performance",
+                    "Cross-browser compatibility testing",
+                    "Company location and contact information display",
+                    "Services portfolio with detailed descriptions"
+                ],
+                challenges: [
+                    "Designed responsive layout that works seamlessly on desktop, tablet, and mobile",
+                    "Implemented smooth animations and transitions for enhanced user experience",
+                    "Optimized images and assets for fast loading times",
+                    "Ensured accessibility standards and SEO best practices",
+                    "Created intuitive navigation for easy access to company information",
+                    "Developed contact system with validation and submission handling"
+                ],
+                tech: ["HTML5", "CSS3", "JavaScript", "Bootstrap", "Responsive Design", "UI/UX", "Git", "Figma"],
+                liveDemo: "https://agek-co.com/",
+                github: "#"
+            },
             biopure: {
                 title: "Biopure Clinic Management System",
                 type: "Full Stack Web Application",
@@ -1562,6 +1611,7 @@
                 liveDemoBtn.style.display = 'none';
             } else {
                 liveDemoBtn.style.display = 'inline-block';
+                liveDemoBtn.textContent = projectId === 'agekco' ? 'Visit Website' : 'Live Demo';
             }
             
             if (project.github === '#') {
@@ -1735,4 +1785,3 @@ function saveMessageToLocalStorage(messageData) {
     </script>
 </body>
 </html>
-
